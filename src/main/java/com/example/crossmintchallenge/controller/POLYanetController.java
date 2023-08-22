@@ -20,4 +20,9 @@ public class POLYanetController {
         log.info("Creating a Cross shape within a matrix of size {}", matrixSize);
         return polYanetService.createCross(matrixSize);
     }
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePolyanet(@RequestParam Long row, @RequestParam Long column){
+        polYanetService.deletePolyanet(row, column);
+    }
 }
