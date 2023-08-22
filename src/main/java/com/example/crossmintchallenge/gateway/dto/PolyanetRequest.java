@@ -7,10 +7,10 @@ import lombok.Builder;
 @Builder
 public class PolyanetRequest {
     @JsonProperty("row")
-    private Long row;
+    private int row;
 
     @JsonProperty("column")
-    private Long column;
+    private int column;
 
         @JsonProperty("candidateId")
         @Builder.Default

@@ -2,7 +2,7 @@ package com.example.crossmintchallenge.services;
 
 public interface POLYanetService {
 
-    String createCross(Long matrixSize);
+    String createCross(int matrixSize);
 
-    void deletePolyanet(Long row, Long column);
+    void deletePolyanet(int row, int column);
 }

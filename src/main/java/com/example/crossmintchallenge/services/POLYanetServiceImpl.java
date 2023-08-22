@@ -14,13 +14,15 @@ public class POLYanetServiceImpl implements POLYanetService {
     private final PolyanetsGateway polyanetsGateway;
 
     @Override
-    public String createCross(Long matrixSize) {
+    public String createCross(int matrixSize) {
         StringBuilder crossBuilder = new StringBuilder();
+
 
         for (int row = 0; row < matrixSize; row++) {
             for (int column = 0; column < matrixSize; column++) {
                 if(((row == column) || ((row+column)==(matrixSize-1))) && (row >= 2 && row < matrixSize - 2)) {
                     crossBuilder.append("X");
+                    polyanetsGateway.postPolyanet(row, column);
                 } else {
                     crossBuilder.append("*");
                 }
@@ -32,7 +34,7 @@ public class POLYanetServiceImpl implements POLYanetService {
     }
 
     @Override
-    public void deletePolyanet(Long row, Long column) {
+    public void deletePolyanet(int row, int column) {
         polyanetsGateway.deletePolyanet(row, column);
     }
 }

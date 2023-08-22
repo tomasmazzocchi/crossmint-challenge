@@ -17,11 +17,11 @@ public class PolyanetsGatewayImpl implements PolyanetsGateway {
     private final RestTemplate restTemplate;
     private static final String API_URL = "https://challenge.crossmint.io/api/polyanets";
 
-    public PolyanetResponse postPolyanet(Long row, Long column){
+    public PolyanetResponse postPolyanet(int row, int column){
         return restTemplate.postForObject(API_URL, getPolyanetRequest(row, column), PolyanetResponse.class);
     }
 
-    public void deletePolyanet(Long row, Long column){
+    public void deletePolyanet(int row, int column){
         //restTemplate.delete(API_URL, getPolyanetRequest(row, column));
 
         HttpHeaders headers = new HttpHeaders();
@@ -32,7 +32,7 @@ public class PolyanetsGatewayImpl implements PolyanetsGateway {
         restTemplate.exchange(API_URL, HttpMethod.DELETE, requestEntity, PolyanetResponse.class);
     }
 
-    private PolyanetRequest getPolyanetRequest(Long row, Long column) {
+    private PolyanetRequest getPolyanetRequest(int row, int column) {
         return PolyanetRequest.builder().row(row).column(column).build();
     }
 }

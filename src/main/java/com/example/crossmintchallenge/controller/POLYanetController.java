@@ -16,13 +16,13 @@ public class POLYanetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createPolyanetCross(@RequestParam Long matrixSize){
+    public String createPolyanetCross(@RequestParam int matrixSize){
         log.info("Creating a Cross shape within a matrix of size {}", matrixSize);
         return polYanetService.createCross(matrixSize);
     }
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    public void deletePolyanet(@RequestParam Long row, @RequestParam Long column){
+    public void deletePolyanet(@RequestParam int row, @RequestParam int column){
         polYanetService.deletePolyanet(row, column);
     }
 }
