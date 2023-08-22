@@ -2,7 +2,6 @@ package com.example.crossmintchallenge.services;
 
 public interface MegaverseService {
 
-    String createMegaverse(int matrixSize);
+    String createMegaverse();
 
-    void deleteAstralObject(int row, int column);
 }

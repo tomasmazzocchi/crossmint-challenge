@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
+
 @Service
 public class MapGatewayImpl implements MapGateway {
     private final RestTemplate restTemplate;
@@ -21,7 +23,9 @@ public class MapGatewayImpl implements MapGateway {
 
 
     @Override
-    public MapResponse getMapGoal() {
-        return restTemplate.getForObject(API_URL.concat(String.format("/map/%s/goal",CANDIDATE_ID)), MapResponse.class);
+    public Optional<MapResponse> getMapGoal() {
+        return Optional.ofNullable(
+                restTemplate.getForObject(API_URL.concat(String.format("/map/%s/goal", CANDIDATE_ID)), MapResponse.class)
+        );
     }
 }

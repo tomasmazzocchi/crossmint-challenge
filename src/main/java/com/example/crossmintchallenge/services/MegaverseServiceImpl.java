@@ -2,44 +2,42 @@ package com.example.crossmintchallenge.services;
 
 import com.example.crossmintchallenge.gateway.ComethsGateway;
 import com.example.crossmintchallenge.gateway.SoloonsGateway;
+import com.example.crossmintchallenge.gateway.dto.MapResponse;
 import com.example.crossmintchallenge.gateway.map.MapGateway;
 import com.example.crossmintchallenge.gateway.PolyanetsGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class MegaverseServiceImpl implements MegaverseService {
 
-    private final PolyanetsGateway polyanetsGateway;
-    private final SoloonsGateway soloonsGateway;
-    private final ComethsGateway comethsGateway;
+    private final MapGateway mapGateway;
+    private final MapGoalService mapGoalService;
 
     @Override
-    public String createMegaverse(int matrixSize) {
-        StringBuilder crossBuilder = new StringBuilder();
-
-        for (int row = 0; row < matrixSize; row++) {
-            for (int column = 0; column < matrixSize; column++) {
-                if(((row == column) || ((row+column)==(matrixSize-1))) && (row >= 2 && row < matrixSize - 2)) {
-                    crossBuilder.append("X");
-                    polyanetsGateway.postAstralObject(row, column, null, null);
-                } else {
-                    crossBuilder.append("*");
-                }
-            }
-            crossBuilder.append("\n");
+    public String createMegaverse() {
+        log.info("Fetch megaverse goal map");
+        Optional<MapResponse> mapToCreate = mapGateway.getMapGoal();
+        if(!mapToCreate.isPresent()){
+            // throw exception
+            log.error("Error fetching megaverse goal map");
+            return null;
         }
+        List<List<String>> goalMap = mapToCreate.get().getGoal();
+        log.info("Start building megaverse map");
+        mapGoalService.process(goalMap);
 
-        log.info(crossBuilder.toString());
-        return crossBuilder.toString().trim();
+        log.info("Finishing building megaverse map");
+        return "success";
 
     }
 
-    @Override
-    public void deleteAstralObject(int row, int column) {
-        polyanetsGateway.deleteAstralObject(row, column);
-    }
+
 }
