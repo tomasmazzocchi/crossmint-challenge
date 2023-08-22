@@ -26,9 +26,8 @@ public class MegaverseServiceImpl implements MegaverseService {
         log.info("Fetch megaverse goal map");
         Optional<MapResponse> mapToCreate = mapGateway.getMapGoal();
         if(!mapToCreate.isPresent()){
-            // throw exception
             log.error("Error fetching megaverse goal map");
-            return null;
+            throw new RuntimeException("Error fetching megaverse goal map");
         }
         List<List<String>> goalMap = mapToCreate.get().getGoal();
         log.info("Start building megaverse map");

@@ -6,6 +6,7 @@ import com.example.crossmintchallenge.gateway.SoloonsGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -29,13 +30,17 @@ public class MapGoalServiceImpl implements MapGoalService {
     }
 
     private void processCell(int row, int column, String command) {
-        String[] commandArray = command.split("_");
-        if(commandArray.length>1){
-            switch (commandArray[1]) {
-                case "POLYANET" -> polyanetsGateway.postAstralObject(row, column, null, null);
-                case "SOLOON" -> soloonsGateway.postAstralObject(row, column, commandArray[0].toLowerCase(), null);
-                case "COMETH" -> comethsGateway.postAstralObject(row, column, null, commandArray[0].toLowerCase());
+        try {
+            String[] commandArray = command.split("_");
+            if (commandArray.length > 1) {
+                switch (commandArray[1]) {
+                    case "POLYANET" -> polyanetsGateway.postAstralObject(row, column, null, null);
+                    case "SOLOON" -> soloonsGateway.postAstralObject(row, column, commandArray[0].toLowerCase(), null);
+                    case "COMETH" -> comethsGateway.postAstralObject(row, column, null, commandArray[0].toLowerCase());
+                }
             }
+        } catch (HttpClientErrorException err){
+            throw new RuntimeException(err.getMessage());
         }
     }
 }
