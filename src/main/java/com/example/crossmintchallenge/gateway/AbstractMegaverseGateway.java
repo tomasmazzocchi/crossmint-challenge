@@ -22,9 +22,9 @@ public abstract class AbstractMegaverseGateway implements MegaverseGateway {
         PolyanetResponse response =  restTemplate.postForObject(API_URL, getPolyanetRequest(row, column, color, direction)
                 , PolyanetResponse.class);
 
-        // Add a sleep to try if I could make all the post necessary to filled the crossmintlogo
+        // Add a sleep to try if I could make all the post necessary to fill the crossmint logo
         try {
-            Thread.sleep(500);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

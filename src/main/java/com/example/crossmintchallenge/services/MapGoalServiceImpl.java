@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 @Service
@@ -22,10 +23,11 @@ public class MapGoalServiceImpl implements MapGoalService {
 
     @Override
     public void process(List<List<String>> goalMap) {
-        IntStream.range(0, goalMap.size()).forEach(row -> processColumn(row, goalMap.get(row)));
+        IntStream.range(0, goalMap.size()).forEach(row -> processRow(row, goalMap.get(row)));
     }
 
-    private void processColumn(int row, List<String> columns) {
+    private void processRow(int row, List<String> columns) {
+        log.info("Processing row number: {}", row);
         IntStream.range(0, columns.size()).forEach(column -> processCell(row, column, columns.get(column)));
     }
 
@@ -34,9 +36,20 @@ public class MapGoalServiceImpl implements MapGoalService {
             String[] commandArray = command.split("_");
             if (commandArray.length > 1) {
                 switch (commandArray[1]) {
-                    case "POLYANET" -> polyanetsGateway.postAstralObject(row, column, null, null);
-                    case "SOLOON" -> soloonsGateway.postAstralObject(row, column, commandArray[0].toLowerCase(), null);
-                    case "COMETH" -> comethsGateway.postAstralObject(row, column, null, commandArray[0].toLowerCase());
+                    case "SOLOON" -> {
+                        soloonsGateway.postAstralObject(row, column, commandArray[0].toLowerCase(), null);
+                        log.info("Soloon {}", commandArray[0]);
+
+                    }
+                    case "COMETH" -> {
+                        comethsGateway.postAstralObject(row, column, null, commandArray[0].toLowerCase());
+                        log.info("Cometh {}", commandArray[0]);
+                    }
+                }
+            } else {
+                if(Objects.equals(command, "POLYANET")){
+                    polyanetsGateway.postAstralObject(row, column, null, null);
+                    log.info("Polyanet");
                 }
             }
         } catch (HttpClientErrorException err){
