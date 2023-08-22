@@ -1,2 +1,4 @@
-default:
-  candidate-id: bdecc463-fde6-4d9e-be34-c405ed8e61b5
+crossmint:
+  candidate-id: "bdecc463-fde6-4d9e-be34-c405ed8e61b5"
+  api-url: "https://challenge.crossmint.io/api"
+
