@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "890aae7d-2360-49c4-8f3b-c66b47d72d38",
+		"name": "CrossMint Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12654601"
+	},
+	"item": [
+		{
+			"name": "Megaverse API",
+			"item": [
+				{
+					"name": "Polyanets",
+					"item": [
+						{
+							"name": "Set a Polyanet",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"row\": 1,\n    \"column\": 1,\n    \"candidateId\": \"bdecc463-fde6-4d9e-be34-c405ed8e61b5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://challenge.crossmint.io/api/polyanets",
+									"protocol": "https",
+									"host": [
+										"challenge",
+										"crossmint",
+										"io"
+									],
+									"path": [
+										"api",
+										"polyanets"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Polyanet",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"row\": 1,\n    \"column\": 1,\n    \"candidateId\": \"bdecc463-fde6-4d9e-be34-c405ed8e61b5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://challenge.crossmint.io/api/polyanets",
+									"protocol": "https",
+									"host": [
+										"challenge",
+										"crossmint",
+										"io"
+									],
+									"path": [
+										"api",
+										"polyanets"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Soloons",
+					"item": [
+						{
+							"name": "Set a Soloon",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"row\": 1,\n    \"column\": 1,\n    \"color\": \"BLUE\",\n    \"candidateId\": \"bdecc463-fde6-4d9e-be34-c405ed8e61b5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://challenge.crossmint.io/api/soloons",
+									"protocol": "https",
+									"host": [
+										"challenge",
+										"crossmint",
+										"io"
+									],
+									"path": [
+										"api",
+										"soloons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Rmv Soloon",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"row\": 1,\n    \"column\": 1,\n    \"candidateId\": \"bdecc463-fde6-4d9e-be34-c405ed8e61b5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://challenge.crossmint.io/api/soloons",
+									"protocol": "https",
+									"host": [
+										"challenge",
+										"crossmint",
+										"io"
+									],
+									"path": [
+										"api",
+										"soloons"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Goal Map",
+					"item": [
+						{
+							"name": "Get Goal Map",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://challenge.crossmint.io/api/map/:candidateId/goal",
+									"protocol": "https",
+									"host": [
+										"challenge",
+										"crossmint",
+										"io"
+									],
+									"path": [
+										"api",
+										"map",
+										":candidateId",
+										"goal"
+									],
+									"variable": [
+										{
+											"key": "candidateId",
+											"value": "bdecc463-fde6-4d9e-be34-c405ed8e61b5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create Megaverse Map",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/megaverse",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"megaverse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rmv Astral Object",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/polyanets?row=0&column=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polyanets"
+					],
+					"query": [
+						{
+							"key": "row",
+							"value": "0"
+						},
+						{
+							"key": "column",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
