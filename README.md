@@ -1,1 +1,2 @@
 # crossmint-challenge
+.
